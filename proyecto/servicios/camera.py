@@ -3,7 +3,7 @@ from time import sleep
 
 camera = PiCamera()
 
-def take_photo(time_seconds=3, rotation=180, filedir='/home/pi/webcam/fotos/', filename='image.jpg'):
+def take_photo(time_seconds=3, rotation=180, filedir='/home/pi/sensorcam/storage/fotos/', filename='image.jpg'):
    camera.start_preview()
    sleep(time_seconds)
    camera.rotation = rotation
@@ -12,7 +12,7 @@ def take_photo(time_seconds=3, rotation=180, filedir='/home/pi/webcam/fotos/', f
    print("foto tomada !!")
 
 
-def take_video(time_seconds=5, rotation=180, filedir='/home/pi/webcam/videos/', filename='video.h264'):
+def take_video(time_seconds=5, rotation=180, filedir='/home/pi/sensorcam/storage/videos/', filename='video.h264'):
    camera.start_preview()
    print("start_preview !!")
    camera.rotation = rotation

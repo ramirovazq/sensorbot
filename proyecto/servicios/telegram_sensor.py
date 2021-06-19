@@ -30,7 +30,7 @@ def comienza_sensor(update, context):
         if GPIO.input(23):
             print__("Movement detected")
             take_photo()
-            with open("/home/pi/webcam/fotos/image.jpg", "rb") as lafoto:
+            with open("/home/pi/sensorcam/fotos/image.jpg", "rb") as lafoto:
                 context.bot.send_photo(chat_id=update.effective_chat.id, photo = lafoto)
                 print__("Photo sent")
     print_("comando sensor finalizado")

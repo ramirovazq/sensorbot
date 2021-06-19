@@ -20,7 +20,7 @@ def unknown(update, context):
 def toma_y_envia_foto(update, context):
     print_("comando de toma y envia foto")
     take_photo()
-    with open("/home/pi/webcam/fotos/image.jpg", "rb") as lafoto:
+    with open("/home/pi/sensorcam/fotos/image.jpg", "rb") as lafoto:
         context.bot.send_photo(chat_id=update.effective_chat.id, photo = lafoto)
         print__("Photo sent")
 
