@@ -8,48 +8,63 @@ import os
 TOKEN_SON = os.getenv("TOKEN_SON")
 TOKEN = TOKEN_SON
 
+print("telegram_sensor is set to: {}, token {}" .format(__name__, TOKEN))
+
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(23, GPIO.IN)
 
 def hi(update, context):
-    print_("Hi")
-    context.bot.send_message(chat_id = update.effective_chat.id, text="Hi! soy el sensor bot")
+    print_("bot sensor: Hi")
+    context.bot.send_message(chat_id = update.effective_chat.id, text="Hi! soy el sensor. /help")
 
 def unknown(update, context):
-        context.bot.send_message(chat_id=update.effective_chat.id, text="No te entiendo")
+    print_("bot sensor: unknown text")
+    context.bot.send_message(chat_id=update.effective_chat.id, text="No te entiendo")
 
 def ayuda(update, context):
-    print__("Ayuda")
+    print_("bot sensor: Ayuda")
+
+    ayuda_text = "opciones: "
+    commands_list = [
+        "/hi", 
+        "/start_sensor",
+        "/help",
+    ]
+    ayuda_text = ayuda_text + " ".join(commands_list)
+
     update.message.reply_text("Ayuda")
-    context.bot.send_message(chat_id=update.effective_chat.id, text="opciones: /hi /start_sensor /help /unknown")
+    context.bot.send_message(chat_id=update.effective_chat.id, text=ayuda_text)
 
 def comienza_sensor(update, context):
-    print_("comando sensor")
+    print_("bot sensor: inicia sensor (while)")
 
     while True:
         if GPIO.input(23):
-            print__("Movement detected")
+            print__("bot sensor: Movement detected")
             take_photo()
-            with open("/home/pi/sensorcam/fotos/image.jpg", "rb") as lafoto:
+            with open("/home/pi/sensorcam/storage/fotos/image.jpg", "rb") as lafoto:
                 context.bot.send_photo(chat_id=update.effective_chat.id, photo = lafoto)
-                print__("Photo sent")
-    print_("comando sensor finalizado")
+                print__("bot sensor: Photo sent")
+    print_("bot sensor: inicia sensor, finalizado (while)")
 
-def main():
+def main_sensor():
 
-    print_("Inicia bot sensor de foto")
+    print_("Inicia bot sensor")
     updater = Updater(token=TOKEN, use_context=True)
     dispatcher = updater.dispatcher
 
-    unknown_handler = MessageHandler(Filters.command, unknown)
+    dict_commands = {'hi': hi, 
+                     'help': ayuda, 
+                     'start_sensor': comienza_sensor}
 
-    dict_commands = {'hi': hi, 'help': ayuda, 'start_sensor': comienza_sensor}
     for command in dict_commands:
         dispatcher.add_handler(CommandHandler(command, dict_commands[command]))
+
+    unknown_handler = MessageHandler(Filters.command, unknown)
     dispatcher.add_handler(unknown_handler)
 
     updater.start_polling()
     updater.idle()
 
 if __name__ == '__main__':
-    main()
+    main_sensor()

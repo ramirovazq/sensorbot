@@ -1,16 +1,12 @@
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 from camera import take_photo 
 from utils import print_, print__
-import RPi.GPIO as GPIO
 import os
 
 TOKEN_SON = os.getenv("TOKEN_SON")
 TOKEN = TOKEN_SON
 
 print("telegram_foto is set to: {}, token {}" .format(__name__, TOKEN))
-
-GPIO.setmode(GPIO.BCM)
-GPIO.setup(23, GPIO.IN)
 
 def hi(update, context):
     print_("bot foto: Hi")
