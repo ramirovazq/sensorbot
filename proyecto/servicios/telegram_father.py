@@ -70,7 +70,7 @@ def ayuda(update, context):
     update.message.reply_text('Ayuda')
     context.bot.send_message(chat_id=update.effective_chat.id, text=ayuda_text)
 
-def main():
+def main_father():
 
     print_("Inicia bot father")
     updater = Updater(token=TOKEN, use_context=True)
@@ -96,4 +96,4 @@ def main():
     updater.idle()
 
 if __name__ == '__main__':
-    main()
+    main_father()
