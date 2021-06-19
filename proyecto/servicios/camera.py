@@ -23,5 +23,5 @@ def take_video(time_seconds=5, rotation=180, filedir='/home/pi/sensorcam/storage
    print("video terminado !!")
 
 if __name__ == "__main__":
-        take_photo(filename="rbvs.jpg")
+        take_photo(filedir='/home/pi/sensorcam/storage/fotos/', filename="rbvs.jpg")
         #take_video(time_seconds=10, filename='test.h264')
