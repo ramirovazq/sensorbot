@@ -30,25 +30,25 @@ def prende_foto(update, context):
 
 def prende_sensor(update, context):
     print_("bot father: comando prende sensor")
-    subprocess.run(["systemctl", "--user", "start", "telegram_sensor.service"])
+    subprocess.run(["systemctl", "--user", "start", "telegram_sensor.service"], shell=True)
 
 def apaga_sensor(update, context):
     print_("bot father: comando apaga sensor")
-    subprocess.run(["systemctl", "--user", "stop", "telegram_sensor.service"])
+    subprocess.run(["systemctl", "--user", "stop", "telegram_sensor.service"], shell=True)
 
 def apaga_foto(update, context):
     print_("bot father: comando apaga foto")
-    subprocess.run(["systemctl", "--user", "stop", "telegram_foto.service"])
+    subprocess.run(["systemctl", "--user", "stop", "telegram_foto.service"], shell=True)
 
 def estado_sensor(update, context):
     print_("bot father: comando estado sensor")
-    answer = subprocess.run(["systemctl", "--user", "status", "telegram_sensor.service"])
+    answer = subprocess.run(["systemctl", "--user", "status", "telegram_sensor.service"], shell=True)
     answer_text = human_answer(answer.returncode)
     context.bot.send_message(chat_id=update.effective_chat.id, text=answer_text)
 
 def estado_foto(update, context):
     print_("bot father: comando estado foto")
-    answer = subprocess.run(["systemctl", "--user", "status", "telegram_foto.service"])
+    answer = subprocess.run(["systemctl", "--user", "status", "telegram_foto.service"], shell=True)
     answer_text = human_answer(answer.returncode)
     context.bot.send_message(chat_id=update.effective_chat.id, text=answer_text)
 
