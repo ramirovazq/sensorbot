@@ -20,7 +20,11 @@ def unknown(update, context):
 
 def prende_foto(update, context):
     print_("bot father: comando prende foto")
-    subprocess.run(["systemctl", "--user", "start", "telegram_foto.service"])
+    try:
+        subprocess.run(["systemctl", "--user", "start", "telegram_foto.service"])
+    except Exception as e:
+        print("Error in subprocess ...")
+        raise
 
 def prende_sensor(update, context):
     print_("bot father: comando prende sensor")
