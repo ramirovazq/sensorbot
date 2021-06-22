@@ -24,6 +24,8 @@ def prende_foto(update, context):
         subprocess.run(['systemctl', '--user', 'start', 'telegram_foto.service'])
     except Exception as e:
         print("Error in subprocess ...")
+        print(e)
+        print("----")
         raise
 
 def prende_sensor(update, context):
