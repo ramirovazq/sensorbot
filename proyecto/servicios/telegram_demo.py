@@ -5,6 +5,7 @@ if __name__ == '__main__':
 
     TOKEN_DEMO = os.getenv("TOKEN_DEMO")
 
+    process = subprocess.Popen(['awk'], stdout=subprocess.PIPE)
     sub = subprocess.run(["systemctl", "--user", "start", "telegram_foto.service"])
     print(sub)
 
