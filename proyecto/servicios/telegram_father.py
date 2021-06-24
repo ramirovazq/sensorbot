@@ -28,28 +28,28 @@ def prende_foto(update, context):
 def prende_sensor(update, context):
     print_("bot father: comando prende sensor")
     try:
-        subprocess.run(["systemctl", "--user", "start", "telegram_sensor.service"], shell=True)
+        subprocess.run(["systemctl", "--user", "start", "telegram_sensor.service"])
     except Exception as e:
         print("Error in subprocess ...")
 
 def apaga_sensor(update, context):
     print_("bot father: comando apaga sensor")
     try:
-        subprocess.run(["systemctl", "--user", "stop", "telegram_sensor.service"], shell=True)
+        subprocess.run(["systemctl", "--user", "stop", "telegram_sensor.service"])
     except Exception as e:
         print("Error in subprocess ...")
 
 def apaga_foto(update, context):
     print_("bot father: comando apaga foto")
     try:
-        subprocess.run(["systemctl", "--user", "stop", "telegram_foto.service"], shell=True)
+        subprocess.run(["systemctl", "--user", "stop", "telegram_foto.service"])
     except Exception as e:
         print("Error in subprocess ...")
 
 def estado_sensor(update, context):
     print_("bot father: comando estado sensor")
     try:
-        answer = subprocess.run(["systemctl", "--user", "status", "telegram_sensor.service"], shell=True)
+        answer = subprocess.run(["systemctl", "--user", "status", "telegram_sensor.service"])
         answer_text = human_answer(answer.returncode)
         context.bot.send_message(chat_id=update.effective_chat.id, text=answer_text)
     except Exception as e:
@@ -59,7 +59,7 @@ def estado_sensor(update, context):
 def estado_foto(update, context):
     print_("bot father: comando estado foto")
     try:
-        answer = subprocess.run(["systemctl", "--user", "status", "telegram_foto.service"], shell=True)
+        answer = subprocess.run(["systemctl", "--user", "status", "telegram_foto.service"])
         answer_text = human_answer(answer.returncode)
         context.bot.send_message(chat_id=update.effective_chat.id, text=answer_text)
     except Exception as e:
