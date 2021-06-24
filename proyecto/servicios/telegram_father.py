@@ -21,42 +21,57 @@ def unknown(update, context):
 def prende_foto(update, context):
     print_("bot father: comando prende foto")
     try:
-        res = subprocess.run(['systemctl', '--user', 'start', 'telegram_foto.service'])
-        print_(res)
-        print_("bot father: subprocess")
+        subprocess.run(['systemctl', '--user', 'start', 'telegram_foto.service'])
     except Exception as e:
         print("Error in subprocess ...")
-        print(e)
-        print("----")
-        raise
 
 def prende_sensor(update, context):
     print_("bot father: comando prende sensor")
-    subprocess.run(["systemctl", "--user", "start", "telegram_sensor.service"], shell=True)
+    try:
+        subprocess.run(["systemctl", "--user", "start", "telegram_sensor.service"], shell=True)
+    except Exception as e:
+        print("Error in subprocess ...")
 
 def apaga_sensor(update, context):
     print_("bot father: comando apaga sensor")
-    subprocess.run(["systemctl", "--user", "stop", "telegram_sensor.service"], shell=True)
+    try:
+        subprocess.run(["systemctl", "--user", "stop", "telegram_sensor.service"], shell=True)
+    except Exception as e:
+        print("Error in subprocess ...")
 
 def apaga_foto(update, context):
     print_("bot father: comando apaga foto")
-    subprocess.run(["systemctl", "--user", "stop", "telegram_foto.service"], shell=True)
+    try:
+        subprocess.run(["systemctl", "--user", "stop", "telegram_foto.service"], shell=True)
+    except Exception as e:
+        print("Error in subprocess ...")
 
 def estado_sensor(update, context):
     print_("bot father: comando estado sensor")
-    answer = subprocess.run(["systemctl", "--user", "status", "telegram_sensor.service"], shell=True)
-    answer_text = human_answer(answer.returncode)
-    context.bot.send_message(chat_id=update.effective_chat.id, text=answer_text)
+    try:
+        answer = subprocess.run(["systemctl", "--user", "status", "telegram_sensor.service"], shell=True)
+        answer_text = human_answer(answer.returncode)
+        context.bot.send_message(chat_id=update.effective_chat.id, text=answer_text)
+    except Exception as e:
+        print("Error in subprocess ...")
+        context.bot.send_message(chat_id=update.effective_chat.id, text=":X")
 
 def estado_foto(update, context):
     print_("bot father: comando estado foto")
-    answer = subprocess.run(["systemctl", "--user", "status", "telegram_foto.service"], shell=True)
-    answer_text = human_answer(answer.returncode)
-    context.bot.send_message(chat_id=update.effective_chat.id, text=answer_text)
+    try:
+        answer = subprocess.run(["systemctl", "--user", "status", "telegram_foto.service"], shell=True)
+        answer_text = human_answer(answer.returncode)
+        context.bot.send_message(chat_id=update.effective_chat.id, text=answer_text)
+    except Exception as e:
+        print("Error in subprocess ...")
+        context.bot.send_message(chat_id=update.effective_chat.id, text=":X")
 
 def recarga_servicios(update, context):
     print_("bot father: reload")
-    answer = subprocess.run(["systemctl", "--user", "daemon-reload"])
+    try:
+        answer = subprocess.run(["systemctl", "--user", "daemon-reload"])
+    except Exception as e:
+        print("Error in subprocess ...")
 
 def ayuda(update, context):
     print_("bot father: Ayuda")
