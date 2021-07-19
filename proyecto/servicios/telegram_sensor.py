@@ -43,7 +43,7 @@ def comienza_sensor(update, context):
             print__("bot sensor: Movement detected")
             take_photo()
             with open("/home/pi/sensorcam/storage/fotos/image.jpg", "rb") as lafoto:
-                context.bot.send_photo(chat_id=update.effective_chat.id, photo = lafoto)
+                context.bot.send_photo(chat_id=update.effective_chat.id, photo = lafoto, timeout=180)
                 print__("bot sensor: Photo sent")
     print_("bot sensor: inicia sensor, finalizado (while)")
 
