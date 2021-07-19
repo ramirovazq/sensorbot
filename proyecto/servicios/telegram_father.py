@@ -96,6 +96,8 @@ def ayuda(update, context):
 def main_father():
 
     print_("Inicia bot father")
+    time.sleep(180)
+    print_("sleep finished")
     updater = Updater(token=TOKEN, use_context=True)
     dispatcher = updater.dispatcher
 
