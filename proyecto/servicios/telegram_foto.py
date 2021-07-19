@@ -20,7 +20,7 @@ def toma_y_envia_foto(update, context):
     print_("bot foto: comando de toma y envia foto")
     take_photo()
     with open("/home/pi/sensorcam/storage/fotos/image.jpg", "rb") as lafoto:
-        context.bot.send_photo(chat_id=update.effective_chat.id, photo = lafoto)
+        context.bot.send_photo(chat_id=update.effective_chat.id, photo = lafoto, timeout=180)
         print__("bot foto: Photo sent")
 
 def ayuda(update, context):
