@@ -12,7 +12,7 @@ def inicia_sensor(debug=False):
     while True:
         if GPIO.input(23):
             if debug:
-                print("DETECTADO ....................")
+                print("=) ....................")
                 sleep(1)
             else:
                 print("DETECTADO ...................")
