@@ -7,7 +7,7 @@ DATE=$(date +"%Y-%m-%d_%H%M")
 #fswebcam -r 1920x1080 --no-banner /home/pi/sensorcam/storage/fotos/maximal.jpg
 
 #fswebcam -i 0 -d /dev/video0 -r 1920x1080 -q --title @raspberry  /home/pi/sensorcam/storage/fotos/image.jpg
-fswebcam -i 0 -d /dev/video0 -r 1920x1080 -q  /home/pi/sensorcam/storage/fotos/image.jpg
+fswebcam -i 0 -d /dev/video0 -r 1920x1080 --no-banner -q /home/pi/sensorcam/storage/fotos/image.jpg
 
 
 echo $DATE
