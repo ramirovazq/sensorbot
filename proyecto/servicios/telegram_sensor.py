@@ -1,5 +1,5 @@
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
-from camera import take_photo 
+from camera import take_webphoto 
 from time import sleep
 from utils import print_, print__
 import RPi.GPIO as GPIO
@@ -41,7 +41,7 @@ def comienza_sensor(update, context):
     while True:
         if GPIO.input(23):
             print__("bot sensor: Movement detected")
-            take_photo()
+            take_webphoto()
             with open("/home/pi/sensorcam/storage/fotos/image.jpg", "rb") as lafoto:
                 context.bot.send_photo(chat_id=update.effective_chat.id, photo = lafoto, timeout=180)
                 print__("bot sensor: Photo sent")
