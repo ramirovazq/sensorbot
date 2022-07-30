@@ -1,7 +1,7 @@
 from time import sleep
 import os
 
-def take_webphoto(time_seconds=5, filedir='/home/pi/sensorcam/storage/fotos/', filename='image.jpg', resolution='1920x1080'):
+def take_webphoto(time_seconds=7, filedir='/home/pi/sensorcam/storage/fotos/', filename='image.jpg', resolution='1920x1080'):
    os.system(f"fswebcam -i 0 -d /dev/video0 -r {resolution} --no-banner -q {filedir}{filename}")
    sleep(time_seconds)
 
