@@ -3,7 +3,7 @@
 DATE=$(date +"%Y-%m-%d_%H%M")
 
 
-fswebcam -r 160x120 --no-banner /home/pi/sensorcam/fotos/minimal.jpg
+fswebcam -r 160x120 --no-banner /home/pi/sensorcam/storage/fotos/minimal.jpg
 #fswebcam -r 1920x1080 --no-banner /home/pi/sensorcam/fotos/maximal.jpg
 
 echo $DATE
