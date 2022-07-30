@@ -4,6 +4,7 @@ from time import sleep
 from utils import print_, print__
 import RPi.GPIO as GPIO
 import os
+import time
 
 TOKEN_SON = os.getenv("TOKEN_SON")
 TOKEN = TOKEN_SON
@@ -42,14 +43,42 @@ def comienza_sensor(update, context):
         if GPIO.input(23):
             print__("bot sensor: Movement detected")
             take_photo()
+
+            empty_foto = True
             with open("/home/pi/sensorcam/storage/fotos/image.jpg", "rb") as lafoto:
-                context.bot.send_photo(chat_id=update.effective_chat.id, photo = lafoto, timeout=180)
-                print__("bot sensor: Photo sent")
+                lafoto.seek(0)
+                first_char = lafoto.read(1)
+                if first_char:
+                    empty_foto = False
+                    lafoto.seek(0)
+                    file_lafoto = lafoto.read()
+                else:
+                    print__("Empty Foto. Means not possible to send_photo")
+                
+
+            attempt = 0
+            while True and not empty_foto:
+                try:
+                    context.bot.send_photo(chat_id=update.effective_chat.id, photo = file_lafoto, timeout=60)
+                    print__("bot sensor: Photo sent")
+                    print__("attempt: " + str(attempt))
+                    break
+                except Exception as e:
+                    print__("next line explains Exception")
+                    print__(e)
+                    print__("Something wronng. Retry attempt" + str(attempt))
+                    time.sleep(30)
+                    attempt += 1
+
     print_("bot sensor: inicia sensor, finalizado (while)")
 
 def main_sensor():
 
     print_("Inicia bot sensor")
+    print_("start sleep")
+    time.sleep(100)
+    print_("sleep finished")
+
     updater = Updater(token=TOKEN, use_context=True)
     dispatcher = updater.dispatcher
 
