@@ -75,7 +75,7 @@ def main_sensor():
 
     print_("Inicia bot sensor")
     print_("start sleep")
-    time.sleep(100)
+    ##time.sleep(100)
     print_("sleep finished")
 
     updater = Updater(token=TOKEN, use_context=True)
