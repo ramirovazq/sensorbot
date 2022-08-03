@@ -3,6 +3,9 @@ import os
 import subprocess
 
 def take_webphoto(time_seconds=7, filedir='/home/pi/sensorcam/storage/fotos/', filename='image.jpg', resolution='1920x1080'):
+   ## because fswebcam couldnt be used by systemd
+   ## it was necessary to include a link in venv/bin folder
+   ## fswebcam -> /usr/bin/fswebcam
    #os.system(f"fswebcam -i 0 -d /dev/video0 -r {resolution} --no-banner -q {filedir}{filename}")
    subprocess.Popen(f"fswebcam -i 0 -d /dev/video0 -r {resolution} --no-banner -q {filedir}{filename}", shell=True, executable='/bin/bash')
    sleep(time_seconds)
