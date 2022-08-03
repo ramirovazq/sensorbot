@@ -1,8 +1,10 @@
 from time import sleep
 import os
+import subprocess
 
 def take_webphoto(time_seconds=7, filedir='/home/pi/sensorcam/storage/fotos/', filename='image.jpg', resolution='1920x1080'):
-   os.system(f"fswebcam -i 0 -d /dev/video0 -r {resolution} --no-banner -q {filedir}{filename}")
+   #os.system(f"fswebcam -i 0 -d /dev/video0 -r {resolution} --no-banner -q {filedir}{filename}")
+   subprocess.Popen(f"fswebcam -i 0 -d /dev/video0 -r {resolution} --no-banner -q {filedir}{filename}", shell=True)
    sleep(time_seconds)
 
 '''
