@@ -10,9 +10,11 @@ systemctl --user list-unit-files | grep telegram
 # start and stop
 systemctl --user start telegram_sensor.service
 systemctl --user stop telegram_sensor.service
+systemctl --user daemon-reload
 
 # return status
 systemctl --user status telegram_sensor.service
+systemctl --user status telegram_sensor.service -n 50
 
 # enable service 
 systemctl --user enable telegram_sensor.service
